@@ -1,8 +1,8 @@
 class Ball{
   int x_coord = width/2;
   int y_coord = height/2;
-  int x_size = 40;
-  int y_size = 40;
+  int x_size = 20;
+  int y_size = 20;
   float speed_x = 1;
   float speed_y = 3;
   color fill_color = color(255);
@@ -24,7 +24,7 @@ class Ball{
   void display() {
     fill(fill_color);
     stroke(0);
-    ellipseMode(CENTER);
+    //ellipseMode(CENTER);
     ellipse(x_coord, y_coord, x_size, y_size);
     //println(x_coord + "  TUSAM  " + y_coord);
   }   

@@ -38,9 +38,13 @@ class Racket {
   void display() {
     fill(fill_color);
     stroke(0);
-    rectMode(CENTER);
+    //rectMode(CENTER);
     if(mouse == true )
       x_coord = mouseX;
+    if(x_coord < 0)
+      x_coord = 0;
+    if(x_coord + x_size > width)
+      x_coord = width - x_size;
     rect(x_coord, y_coord, x_size, y_size);
     //println(x_coord + "  TUSAM  " + y_coord);
   }  
@@ -50,7 +54,7 @@ class Racket {
       return;
     if (pressedKey == button_left && x_coord >= 0)
       x_coord -= speed;
-    else if (pressedKey == button_right && x_coord <= width)
+    else if (pressedKey == button_right && x_coord + x_size <= width)
       x_coord += speed;
     //println("stisnut je " + pressedKey);
   }
@@ -61,7 +65,8 @@ class Racket {
     //TODO Diff treba popraviti
     //diff is number between 0 and 1 and describe
     //which part of racked ball hit.
-    float diff = float(ball.getPosX() - ball.getSizeX() - x_coord - x_size2) / x_size;
+    //float diff = float(ball.getPosX() - ball.getSizeX()/2 - x_coord - x_size2) / x_size;
+    float diff = float(ball.getPosX() - x_coord) / x_size;
     
     //we want for speed to be between 0 and maxSpeed.
     float newSpeedX = (diff-0.5)*maxSpeed*1.5;
@@ -79,11 +84,13 @@ class Racket {
     
     int ballX = ball.getPosX();
     //println("Koord X = " + x_coord + "-" + (x_coord + x_size) + " lopta = " + ballX);
-    if(ballX < x_coord - x_size2 || ballX > x_coord + x_size2)
+    //if(ballX < x_coord - x_size2 || ballX > x_coord + x_size2)
+    if(ballX < x_coord - x_size || ballX > x_coord + x_size)
       return;
     int ballY = ball.getPosY();
     //println("Koord Y = " + y_coord + "-" + (y_coord + y_size) + " lopta = " + ballY);
-    if(ballY < y_coord - y_size2 || ballY > y_coord + y_size2)
+    //if(ballY < y_coord - y_size2 || ballY > y_coord + y_size2)
+    if(ballY < y_coord - y_size || ballY > y_coord + y_size)
       return;
    
     println("Doslo je do udarca");
