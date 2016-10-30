@@ -39,7 +39,7 @@ class Racket {
     fill(fill_color);
     stroke(0);
     rectMode(CENTER);
-    if(mouse == true)
+    if(mouse == true )
       x_coord = mouseX;
     rect(x_coord, y_coord, x_size, y_size);
     //println(x_coord + "  TUSAM  " + y_coord);

@@ -8,7 +8,7 @@ void setup() {
   //fullScreen();
   size(700, 800);
   // 65 and 68 are codes for letters A and D.
-  player1 = new Racket(0, 100, "Player1", false, 65, 68);
+  player1 = new Racket(0, 100, "Player1", false, LEFT, RIGHT);
   // 37 and 39 are codes for arrows left and right.
   player2 = new Racket(width/2, height - 100, "Player2", true, 37, 39);
   

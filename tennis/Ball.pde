@@ -1,10 +1,10 @@
 class Ball{
   int x_coord = width/2;
   int y_coord = height/2;
-  int x_size = 20;
-  int y_size = 20;
+  int x_size = 40;
+  int y_size = 40;
   float speed_x = 1;
-  float speed_y = 2;
+  float speed_y = 3;
   color fill_color = color(255);
   
   Ball() {
@@ -68,21 +68,28 @@ class Ball{
     if(y_coord <= 0 || y_coord >= height)
        gameOver();
    
-    x_coord += speed_x;
-    if(x_coord <= 0 || x_coord >= width)
+    if(speed_x < 0 && x_coord + speed_x - x_size/ 2 < 0)
+      x_coord = x_size/2;
+    else if(speed_x > 0 && x_coord + speed_x + x_size/2 > width)
+       x_coord = width - x_size/2;
+    else
+      x_coord += speed_x;
+    
+    if(x_coord == x_size/2 || x_coord == width - x_size/2)
       hitWall();
    
   }
+ 
   
   void hitWall() {
     println("TTTUU" + speed_y);
     if(speed_x < 0)
-      speed_x = random(1,2);
+      speed_x = random(4,5);
     else
-      speed_x = -random(1,2);
+      speed_x = -random(4,5);
     
-    println("Nova x brzina je " + speed_x);
-    x_coord += speed_x;
+    println("Nova x brzina je " + speed_x +  "koordinate su " + x_coord + ", " + y_coord);
+    //x_coord += speed_x;
   }
   
   void gameOver() {
