@@ -29,6 +29,7 @@ void draw() {
 
 //reply to event
 void controlEvent(ControlEvent theEvent){
+  println("cotrolevet");
   window.controlEvent(theEvent);
 }
 
@@ -37,6 +38,12 @@ void controlEvent(ControlEvent theEvent){
  *  Function that check for each player if she want 
  *  to move left or right.
  */
-void keyPressed(int key){
-  window.checkPressedKey(key);
+void keyPressed(){
+  window.checkPressedKey(keyCode);
+}
+
+
+void keyReleased(){
+  window.checkReleasedKey(keyCode);
+  
 }
