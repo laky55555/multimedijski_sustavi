@@ -68,7 +68,7 @@ class Window {
     //// 37 and 39 are codes for arrows left and right.
     //player2 = new Racket(width/2, height - 100, "Player2", true, 37, 39);
     //// Ball initialization. 
-    //ball = new Ball();
+    ball = new Ball();
     players = new Racket[playerNum];
     for(int i = 0; i < playerNum && i < 2; ++i)
       players[i] = new Racket(width/2, 100+i*(height-200), names[i].getText(),false,
@@ -170,9 +170,8 @@ class Window {
   }
   void checkPressedKey(int key) {
     if (play) {
-      player1.checkPressedKey(key);
-      player2.checkPressedKey(key);
-      return;
+      for(int i = 0; i < playerNum; ++i)
+        players[i].checkPressedKey(key);
     }
   }
 
