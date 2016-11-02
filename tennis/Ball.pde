@@ -141,12 +141,12 @@ class Ball{
    * Function is responsible for checking if ball hit wall,
    * or if game is over.
    */
-  void update() {
+  boolean update() {
     y_coord += speed_y;
 
     //If y coordinate are outside screen someone lost.
     if(y_coord <= 0 || y_coord >= height)
-       gameOver();
+       return true;
 
     //If x coordinate are outside screen ball should hit the wall.
     if(speed_x < 0 && x_coord + speed_x < 0)
@@ -159,7 +159,7 @@ class Ball{
     //We use width - x_size because we need to calculate for width of the ball.
     if(x_coord == 0 || x_coord == width - x_size)
       hitWall();
-
+    return false;
   }
 
 

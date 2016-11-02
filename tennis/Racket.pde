@@ -53,8 +53,8 @@ class Racket {
         x_coord = width/2;
 
     y_coord = y_coor;
-    if(y_coord < distanceFromEnd || y_coord > height - distanceFromEnd)
-        y_coord = height/2;
+    //if(y_coord < distanceFromEnd || y_coord > height - distanceFromEnd)
+    //    y_coord = height/2;
 
     mouse = mous;
 
