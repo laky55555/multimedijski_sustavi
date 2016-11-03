@@ -21,6 +21,8 @@ class Racket {
 
   //Player name.
   String name;
+  
+  
 
   //Boolean value that determine if player is moving by mouse.
   //False means player is playing by keyboard.
@@ -30,7 +32,7 @@ class Racket {
   //Code for button for moving right.
   int button_right;
   // Default starting filling color.
-  color fill_color = color(255);
+  int fill_color = color(255);
 
   //TODO maybe add static variable so just one player can play by mouse.
   //TODO maybe add static list of all taken buttons for playing for checking newly added.
@@ -46,7 +48,7 @@ class Racket {
    * @param button_righ Int code for button for moving right.
    */
   Racket(int x_coor, int y_coor, String nam, boolean mous,
-          int button_lef, int button_righ) {
+          int button_lef, int button_righ, int myColo) {
 
     x_coord = x_coor;
     if(x_coord < 0 || x_coord > width - distanceFromEnd)
@@ -65,6 +67,7 @@ class Racket {
       button_left = button_righ = -1;
 
     name = nam;
+    fill_color = myColo;
   }
 
   /**
@@ -82,9 +85,9 @@ class Racket {
    * @param fill_colo   Racket filling color.
    */
   Racket(int x_coor, int y_coor, String nam, int x_siz, int y_siz,
-    float spee, boolean mous, int button_lef, int button_righ, color fill_colo) {
+    float spee, boolean mous, int button_lef, int button_righ, color fill_colo, int myColo) {
     //Calling more general construct.
-    this(x_coor, y_coor, nam, mous, button_lef, button_righ);
+    this(x_coor, y_coor, nam, mous, button_lef, button_righ, myColo);
 
     if(x_siz > 10 && x_siz < width/5)
         x_size = x_siz;
@@ -94,7 +97,7 @@ class Racket {
 
     speed = spee;
 
-    fill_color = fill_colo;
+  
   }
 
 
@@ -116,8 +119,10 @@ class Racket {
       x_coord = width - x_size;
 
     //Drawing racket on screen.
+    
     rect(x_coord, y_coord, x_size, y_size);
-
+    //fill(0);
+    //text(name, x_coord, y_coord+y_size);
     //println(x_coord + "  TUSAM  " + y_coord);
   }
 

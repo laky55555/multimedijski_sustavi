@@ -25,6 +25,7 @@ class Window {
   Textfield names[];
   ColorPicker cp;
   Slider R, G, B;
+  int[] colors = new int[] {255, 255, 255, 255};
 
   //first we show wellcome screen and get info about game
   Window(ControlP5 _controlP5) {
@@ -89,7 +90,7 @@ class Window {
     for(int i = 0; i < playerNum; ++i){
       println(100+(i%2)*(height-200)+15*(i-1)*i);
       players[i] = new Racket(width/2-i*100, 100+(i%2)*(height-250)+10*(i-1)*i, names[i].getText(),false,
-                              parseInt(commands[i].getText()), parseInt(commands[i+playerNum].getText()));
+                              parseInt(commands[i].getText()), parseInt(commands[i+playerNum].getText()), colors[i]);
     }
   }
   
@@ -113,8 +114,15 @@ class Window {
       for(int i=0; i < playerNum; ++i)
         players[i].strike(ball);
       
-      end = ball.update();
-      play = !end;
+       
+      int tmp = ball.update();
+      if(tmp >= 0){
+        end = true;
+        play = !end;
+        //tu se sada lako moze naci tko je pobjedio...
+        exit();
+      }
+      
     }else if(end){
       newGameBtn.setVisible(true);
     }
@@ -128,11 +136,11 @@ class Window {
    */
   void controlEvent(ControlEvent theEvent) {
     if (!theEvent.isGroup()) {
-      if (theEvent.getController().getName().equals("Next")) { println("nrext");
+      if (theEvent.getController().getName().equals("Next")) { println("nrext"); //<>//
         nextButtonClick();}
-      else if (theEvent.getController().getName() == "Play") {println("play");
+      else if (theEvent.getController().getName() == "Play") {println("play"); //<>//
         playButtonClick();   }
-      else if(theEvent.getController().getName() == "NewGame"){println("new");
+      else if(theEvent.getController().getName() == "NewGame"){println("new"); //<>//
         newGameButtonClick();}
       
     }
@@ -167,21 +175,20 @@ class Window {
     if(comandsEmpty()){
           errorMessage = "You must type all comands";
           return;
-        }
-        errorMessage = "";
-        for (int i = 0; i < playerNum; ++i)
-          controlP5.remove("Player"+i);
-        for (int i = 0; i < playerNum * 2; ++i) {
-          controlP5.remove(i+"L");
-          controlP5.remove(i+"R");
-        }
-        play=true;
-        wellcome=false;
-        makePlayersAndBall();
-        controlP5.remove("R");
-        controlP5.remove("G");
-        controlP5.remove("B");
-        controlP5.remove("Play");
+    }
+    errorMessage = "";
+    for (int i = 0; i < playerNum; ++i)
+      names[i].remove();
+    for (int i = 0; i < playerNum*2; ++i) 
+      commands[i].remove();
+    
+    play=true;
+    wellcome=false;
+    makePlayersAndBall();
+    controlP5.remove("R");
+    controlP5.remove("G");
+    controlP5.remove("B");
+    controlP5.remove("Play");
   }
   
   void newGameButtonClick(){
@@ -189,6 +196,7 @@ class Window {
     end = false;
     makeControls();
     drawColorPicker();  
+    controlP5.remove("NewGame");
   }
   
   void visiblityOfColorPicker(boolean value){
@@ -232,8 +240,10 @@ class Window {
 
   void changeColorIfHasFocus(){
     for(int i=0; i < playerNum; ++i)
-      if(names[i].isFocus())
+      if(names[i].isFocus()){
         names[i].setColorBackground(color(R.getValue(), G.getValue(), B.getValue()));
+        colors[i] = color(R.getValue(), G.getValue(), B.getValue());
+      }
   }
   
   int textFiledInFocus() {
