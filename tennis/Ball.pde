@@ -18,7 +18,7 @@ class Ball{
   // Default starting speed across width.
   float speed_x = 1;
   // Default starting speed across height.
-  float speed_y = 3;
+  float speed_y = 1.7;
   // Default starting filling color.
   color fill_color = color(255);
 
@@ -174,9 +174,9 @@ class Ball{
 
     //After ball hit the wall it will go in random different direction.
     if(speed_x < 0)
-      speed_x = random(2,5);
+      speed_x = random(2,3);
     else
-      speed_x = -random(2,5);
+      speed_x = -random(2,3);
 
 
     //Speed stays unchanged.

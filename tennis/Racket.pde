@@ -17,7 +17,7 @@ class Racket {
   int y_size = 20;
 
   //Default starting moving speed.
-  float speed = x_size/4;
+  float speed = x_size/2;
 
   //Player name.
   String name;
