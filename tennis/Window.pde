@@ -61,8 +61,8 @@ class Window {
     errorMessage = "";
     newGameBtn = controlP5.addButton("NewGame")
                 .setValue(0)
-                .setPosition(width/2 - 50, height/4+200)
-                .setSize(100, 50);
+                .setPosition(width/2 - 70, height/4+100)
+                .setSize(150, 60);
     newGameBtn.setVisible(false);
    
   }
@@ -78,31 +78,23 @@ class Window {
 
   //player initialization
   void makePlayersAndBall() {
-    //Initialization of players and ball.
-
-    //// 65 and 68 are codes for letters A and D.
-    //player1 = new Racket(width/2, 100, "Player1", false, LEFT, RIGHT);
-    //// 37 and 39 are codes for arrows left and right.
-    //player2 = new Racket(width/2, height - 100, "Player2", true, 37, 39);
+    //Initialization of players and ball
     //// Ball initialization. 
     ball = new Ball();
     players = new Racket[playerNum];
-    for(int i = 0; i < playerNum; ++i){
-      println(100+(i%2)*(height-200)+15*(i-1)*i);
+    for(int i = 0; i < playerNum; ++i)
       players[i] = new Racket(width/2-i*100, 100+(i%2)*(height-250)+10*(i-1)*i, names[i].getText(),false,
                               parseInt(commands[i].getText()), parseInt(commands[i+playerNum].getText()), colors[i]);
-    }
   }
   
 
 
   void drawCurrentStage() {
     background(239, 162, 52);
-    //background(R.getValue(),G.getValue(), B.getValue());
     if (wellcome) {
       drawer.makeText("Tennis", 40, 255, width/2, height/4);
       drawer.makeText("Select number of players and names...", 20, 255, width/2, height/4 + 40);
-      drawer.makeText(errorMessage, 20, 0, width/2, height/4 + 300);
+      drawer.makeText(errorMessage, 20, 0, width/2, height/4 + 400);
       changeColorIfHasFocus();
     } else if (play) {
       //Draw current positions of all players and ball.
@@ -120,7 +112,6 @@ class Window {
         end = true;
         play = !end;
         //tu se sada lako moze naci tko je pobjedio...
-        exit();
       }
       
     }else if(end){
@@ -136,12 +127,12 @@ class Window {
    */
   void controlEvent(ControlEvent theEvent) {
     if (!theEvent.isGroup()) {
-      if (theEvent.getController().getName().equals("Next")) { println("nrext"); //<>//
-        nextButtonClick();}
-      else if (theEvent.getController().getName() == "Play") {println("play"); //<>//
-        playButtonClick();   }
-      else if(theEvent.getController().getName() == "NewGame"){println("new"); //<>//
-        newGameButtonClick();}
+      if (theEvent.getController().getName().equals("Next"))  //<>//
+        nextButtonClick();
+      else if (theEvent.getController().getName() == "Play") //<>//
+        playButtonClick();   
+      else if(theEvent.getController().getName() == "NewGame") //<>//
+        newGameButtonClick();
       
     }
   }
@@ -161,13 +152,13 @@ class Window {
           drawTextFields();
           removeWellcomeScreen();
           playBtn.setVisible(true);
-          playBtn.setPosition(width/2 - 50, height/4+80+ playerNum*70);
+          playBtn.setPosition(width/2 - 50, height/4+80+ playerNum*60);
         }
   }
   
   void removeWellcomeScreen(){
-    controlP5.remove("Next");
-    controlP5.remove("playerNum");
+    nextBtn.remove();
+    playerNumRB.remove();
   }
   
   
@@ -188,15 +179,17 @@ class Window {
     controlP5.remove("R");
     controlP5.remove("G");
     controlP5.remove("B");
-    controlP5.remove("Play");
+    playBtn.remove();
   }
   
   void newGameButtonClick(){
     wellcome = true;
     end = false;
+    play = false;
+    playerNum =0;
+    newGameBtn.remove();
     makeControls();
     drawColorPicker();  
-    controlP5.remove("NewGame");
   }
   
   void visiblityOfColorPicker(boolean value){
@@ -216,7 +209,6 @@ class Window {
   
   void drawTextFields(){
     for (int i = 0; i < playerNum; ++i) {
-     
       names[i] = controlP5.addTextfield("Player"+i)
         .setPosition(width/2-200, height/4+80+i*50)
         .setSize(150, 30)
