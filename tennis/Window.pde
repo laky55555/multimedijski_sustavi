@@ -27,6 +27,7 @@ class Window {
   Slider R, G, B;
   int[] colors = new int[] {255, 255, 255, 255};
   boolean firstScreen;        //allow changing background color
+  color oldColor;       //remember selected color
 
   //first we show wellcome screen and get info about game
   Window(ControlP5 _controlP5) {
@@ -91,19 +92,21 @@ class Window {
 
 
   void drawCurrentStage() {
-    if(firstScreen)
-      background(R.getValue(), G.getValue(), B.getValue());
+    if(firstScreen){
+      oldColor = color(R.getValue(), G.getValue(), B.getValue());
+      background(oldColor);
+    }
     else 
-      background(102, 255, 178);
+      background(oldColor);
     if (wellcome) {
       drawer.makeText("Tennis", 40, 255, width/2, height/4);
       drawer.makeText("Select number of players and names...", 20, 255, width/2, height/4 + 40);
       drawer.makeText(errorMessage, 20, 0, width/2, height/4 + 400);
       changeColorIfHasFocus();
       if(firstScreen)
-        drawer.makeText("You can change background color...", 20, 0, 20, 650);
+        drawer.makeText("You can change background color...", 20, 255, 100, 670);
       else 
-        drawer.makeText("Select color and pick player...", 20, 0, 20, 650);
+        drawer.makeText("Select color and pick player...", 20, 255, 150, 670);
     } else if (play) {
       //Draw current positions of all players and ball.
       for(int i=0; i < playerNum; ++i)
@@ -154,6 +157,7 @@ class Window {
           return;
         }
         else {
+          firstScreen = false;
           errorMessage = "";
           commands = new Textfield[playerNum*2];
           names = new Textfield[playerNum];
