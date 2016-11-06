@@ -26,6 +26,7 @@ class Window {
   ColorPicker cp;
   Slider R, G, B;
   int[] colors = new int[] {255, 255, 255, 255};
+  boolean firstScreen;        //allow changing background color
 
   //first we show wellcome screen and get info about game
   Window(ControlP5 _controlP5) {
@@ -41,7 +42,7 @@ class Window {
    //use radio button to get number of players
   //use text boxes to get player names and racket controls
   //add controls to UI
-  void makeControls() {
+  void makeControls() {    
     controlP5.setFont(drawer.getControlFont(20));
     drawer.setFont(50, 255);
     playerNumRB = controlP5.addRadioButton("playerNum", width/2 - 20, height/4 + 80)
@@ -51,7 +52,7 @@ class Window {
     playerNumRB.addItem("4", 4);
     nextBtn = controlP5.addButton("Next")
       .setValue(0)
-      .setPosition(width/2 - 50, height/4+200)
+      .setPosition(width/2 - 50, height/4+200)  
       .setSize(100, 50);
     playBtn = controlP5.addButton("Play")
       .setValue(0)
@@ -64,7 +65,7 @@ class Window {
                 .setPosition(width/2 - 70, height/4+100)
                 .setSize(150, 60);
     newGameBtn.setVisible(false);
-   
+     firstScreen = true;        
   }
   
     void drawColorPicker(){
@@ -90,12 +91,19 @@ class Window {
 
 
   void drawCurrentStage() {
-    background(239, 162, 52);
+    if(firstScreen)
+      background(R.getValue(), G.getValue(), B.getValue());
+    else 
+      background(102, 255, 178);
     if (wellcome) {
       drawer.makeText("Tennis", 40, 255, width/2, height/4);
       drawer.makeText("Select number of players and names...", 20, 255, width/2, height/4 + 40);
       drawer.makeText(errorMessage, 20, 0, width/2, height/4 + 400);
       changeColorIfHasFocus();
+      if(firstScreen)
+        drawer.makeText("You can change background color...", 20, 0, 20, 650);
+      else 
+        drawer.makeText("Select color and pick player...", 20, 0, 20, 650);
     } else if (play) {
       //Draw current positions of all players and ball.
       for(int i=0; i < playerNum; ++i)
