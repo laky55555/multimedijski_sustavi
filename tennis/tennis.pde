@@ -12,7 +12,7 @@ ControlP5 controlP5;
 
 void setup() {
   
-  frameRate(80);
+  frameRate(100);
   //Decide between screen size.
   //fullScreen();
   size(700, 800);
