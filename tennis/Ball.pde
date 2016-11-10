@@ -18,7 +18,7 @@ class Ball{
   // Default starting speed across width.
   float speed_x = 1;
   // Default starting speed across height.
-  float speed_y = 1.7;
+  float speed_y = 2.5;
   // Default starting filling color.
   color fill_color = color(255);
 
