@@ -17,7 +17,7 @@ class Racket {
   int y_size = 20;
 
   //Default starting moving speed.
-  float speed = x_size/2;
+  float speed = x_size/2.7;
 
   //Player name.
   String name;
@@ -160,9 +160,14 @@ class Racket {
     ball.setSpeedX(newSpeedX);
 
     //TODO Here we should decide how speed by y axes shoud be modified.
-    ball.setSpeedY(-ball.getSpeedY());
+    //When ball speed is positive ball goes slower (don't know why)
+    float ballSpeed = ball.getSpeedY();
+    if(ballSpeed >= 0)
+      ball.setSpeedY(-ballSpeed/1.5);
+    else
+      ball.setSpeedY(-ballSpeed*1.5);
 
-    //println("nova brzina je: (" + ball.getSpeedX() + ","  + ball.getSpeedY() + ")");
+    println("nova brzina je: (" + ball.getSpeedX() + ","  + ball.getSpeedY() + ")");
 
   }
 
