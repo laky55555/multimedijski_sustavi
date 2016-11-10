@@ -104,9 +104,9 @@ class Window {
       drawer.makeText(errorMessage, 20, 0, width/2, height/4 + 400);
       changeColorIfHasFocus();
       if(firstScreen)
-        drawer.makeText("You can change background color...", 20, 255, 100, 670);
+        drawer.makeTextLeft("You can change background color...", 20, 255, 10, 670);
       else 
-        drawer.makeText("Select color and pick player...", 20, 255, 150, 670);
+        drawer.makeTextLeft("Select color and pick player...", 20, 255, 10, 670);
     } else if (play) {
       //Draw current positions of all players and ball.
       for(int i=0; i < playerNum; ++i)

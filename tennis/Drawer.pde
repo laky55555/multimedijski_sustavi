@@ -14,6 +14,13 @@ class Drawer{
     text(text,center_x, center_y);
   }
   
+  void makeTextLeft(String text, int fontSize,  
+                    int fontColor,int center_x, int center_y){
+    setFont(fontSize, fontColor);
+    textAlign(LEFT);
+    text(text,center_x, center_y);
+  }
+  
   void setFont(int fontSize, int fontColor){
     textFont(font,fontSize);
     fill(fontColor);
