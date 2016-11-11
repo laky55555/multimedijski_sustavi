@@ -84,9 +84,15 @@ class Window {
     //// Ball initialization. 
     ball = new Ball();
     players = new Racket[playerNum];
-    for(int i = 0; i < playerNum; ++i)
-      players[i] = new Racket(width/2-i*100, 100+(i%2)*(height-250)+5*(i-1)*i, names[i].getText(),false,
+    int dodatak;
+    for(int i = 0; i < playerNum; ++i){
+      if(i >= 2)
+        dodatak = 50;
+      else
+        dodatak = 0;
+      players[i] = new Racket(width/2-i*100, 100+(i%2)*(height-250)+dodatak, names[i].getText(),false,
                               parseInt(commands[i].getText()), parseInt(commands[i+playerNum].getText()), colors[i]);
+    }
   }
   
 
