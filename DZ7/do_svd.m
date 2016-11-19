@@ -1,5 +1,5 @@
 
-function [map, file] = do_svd(matrix, target, number_of_subdir)
+function [map, file, matrix_orig] = do_svd(matrix, target, number_of_subdir)
 % do_svd  Finds column in matrix that is closest by norm 2 to target vector.
 %         matrix -> matrix in which we search for closest match (MxN).
 %         target -> vector for which we search closest match (Mx1).
@@ -28,6 +28,8 @@ function [map, file] = do_svd(matrix, target, number_of_subdir)
     % y = U^T * matrix
     matrix = transpose(U) * matrix;
     target = transpose(U) * target;
+    
+    matrix_orig = matrix;
     
     % Searching for column closest by norm 2 to target vector.
     matrix = matrix - target;

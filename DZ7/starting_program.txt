@@ -1,0 +1,26 @@
+There are 2 programs that you can execute:
+
+1) testing_one.m that accepts 3 arguments:
+	- number of different people/directories for trening set
+	- number of signs per person/directory trening set
+	- path to sign that we will test on trening data
+	Example: testing_one(5,5,'potpisi/ivan.txt');
+
+2) testing_all.m that accepts 4 arguments:
+	- number of different people/directories for trening set
+	- number of signs per person/directory trening set
+	- number of people/directories that we will test on trening set
+	- number of signs for each person that we will test on trening set
+	Example: testing_all(5,2,5,5);
+	We recomend that first argument is equal or greater than third so that 
+	for each person that we compare sign have at least one example of that person.
+	We recomend that second argument is smaller than fourth so the program 
+	can test sign that is not already in training set.
+
+Requirements:
+	- programs: load_data.m, do_svd.m, find_closest_matrix.m
+	- directory structure: in current directory there must be programs mentioned earlier,
+						   directory "potpisi" in which there are directories "nameX" where
+						   X is positive integer greater than 0, in which are textual files
+						   "koordinateX.txt" where X is positive integer greater than 0 that
+						   is output of processing program potpis.pde.
