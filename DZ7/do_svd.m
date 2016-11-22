@@ -17,7 +17,9 @@ function [map, file, matrix_orig] = do_svd(matrix, target, number_of_subdir)
         
     
     % Subtracting mean from each coordinate (for why check article).
-    matrix = matrix - average;
+    for i = 1:size(matrix,2)
+        matrix(:,i) = matrix(:,i) - average;
+    end
     target = target - average;
     
     % Calculating SVD
@@ -32,11 +34,13 @@ function [map, file, matrix_orig] = do_svd(matrix, target, number_of_subdir)
     matrix_orig = matrix;
     
     % Searching for column closest by norm 2 to target vector.
-    matrix = matrix - target;
+    for i = 1:size(matrix,2)
+        matrix(:,i) = matrix(:,i) - target;
+    end
     % Norm for each column.
     matrix = sqrt(sum(abs(matrix).^2,1));
     % Finding min value and position.
-    [min, position] = min(matrix);
+    [minimum, position] = min(matrix);
     
     % Calculating from which map and directory closest match come.
     map = ceil(position/ number_of_subdir);
