@@ -44,7 +44,10 @@ function closest = find_closest_match(matrix, position)
 
   
   target = matrix(:, position);
-  matrix = matrix - target;
+  
+  for i = 1:size(matrix,2)
+        matrix(:,i) = matrix(:,i) - target;
+  end
   
   % Norm for each column.
   matrix = sqrt(sum(abs(matrix).^2,1));
@@ -52,7 +55,7 @@ function closest = find_closest_match(matrix, position)
   matrix(position) = max(matrix);
   
   % Finding min value and position.
-  [min, closest] = min(matrix);
+  [minimum, closest] = min(matrix);
   
   
 end
