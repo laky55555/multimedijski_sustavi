@@ -61,6 +61,7 @@ void draw(){
       for(int i = 0; i < playerData.length; ++i){
         String[] findEnd = split(playerData[i], ' ');  
         if(findEnd.length == 1 && findEnd[0].equals("END")){
+          background(255, 153, 255);  
           playScreen = false;
           playBtn.setVisible(true);
         }
