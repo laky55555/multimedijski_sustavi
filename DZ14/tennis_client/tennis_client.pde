@@ -44,12 +44,14 @@ void draw(){
       c.write(mouseX + '\n');
     if(c.available() > 0){
       input = c.readString();
-      println(input);
+      
       String[] playerData = split(input, '\n');
-      String[] coordinatesAndIp = split(playerData[playerData.length-1], '\n');
-      rect(Float.parseFloat(coordinatesAndIp[0]), Float.parseFloat(coordinatesAndIp[1]), 30, 10, 7);
-      rect(Float.parseFloat(coordinatesAndIp[2]), Float.parseFloat(coordinatesAndIp[3]), 30, 10, 7);
-      ellipse(Float.parseFloat(coordinatesAndIp[4]), Float.parseFloat(coordinatesAndIp[5]), 10, 10);
+      println(playerData[playerData.length-1]);
+      if(!playerData.equals("")){
+        String[] coordinatesAndIp = split(playerData[playerData.length-1], '\n');
+        rect(Float.parseFloat(coordinatesAndIp[0]), Float.parseFloat(coordinatesAndIp[1]), 30, 10, 7);
+        rect(Float.parseFloat(coordinatesAndIp[2]), Float.parseFloat(coordinatesAndIp[3]), 30, 10, 7);
+        ellipse(Float.parseFloat(coordinatesAndIp[4]), Float.parseFloat(coordinatesAndIp[5]), 10, 10);
       }
     }
     else{
@@ -57,9 +59,8 @@ void draw(){
       fill(color(152, 0, 153));
       textFont(font,25);
       text("Wait for Laky55555 server...", width/2, height/2);
-    }
+    }  
   }
-
 }
 
 void controlEvent(ControlEvent theEvent){
