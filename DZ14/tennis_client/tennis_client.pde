@@ -52,9 +52,15 @@ void draw(){
       println(playerData[0]);
       if(!playerData[0].equals("")){
         String[] coordinatesAndIp = split(playerData[0], ' ');
-        rect(Float.parseFloat(coordinatesAndIp[0]), Float.parseFloat(coordinatesAndIp[1]), 30, 10, 7);
-        rect(Float.parseFloat(coordinatesAndIp[2]), Float.parseFloat(coordinatesAndIp[3]), 30, 10, 7);
-        ellipse(Float.parseFloat(coordinatesAndIp[4]), Float.parseFloat(coordinatesAndIp[5]), 10, 10);
+        if(coordinatesAndIp.length == 6){
+          rect(Float.parseFloat(coordinatesAndIp[0]), Float.parseFloat(coordinatesAndIp[1]), 30, 10, 7);
+          rect(Float.parseFloat(coordinatesAndIp[2]), Float.parseFloat(coordinatesAndIp[3]), 30, 10, 7);
+          ellipse(Float.parseFloat(coordinatesAndIp[4]), Float.parseFloat(coordinatesAndIp[5]), 10, 10);
+        }
+        else if(coordinatesAndIp.length == 1 && coordinatesAndIp[0].equals("END")){
+          playScreen = false;
+          playBtn.setVisible(true);
+        }
       }
     }
     else{
