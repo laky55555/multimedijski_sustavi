@@ -42,26 +42,29 @@ void draw(){
     background(255, 153, 255);  
     if(frameCount % 5 == 0){
       String data = Integer.toString(mouseX) + "\n";
-      println(data);
+      //println(data);
       c.write(data);
     }
     if(c.available() > 0){
       input = c.readString();
-      
+      println(input);
       String[] playerData = split(input, '\n');
       println(playerData[0]);
       if(!playerData[0].equals("")){
         String[] coordinatesAndIp = split(playerData[0], ' ');
         if(coordinatesAndIp.length == 6){
-          rect(Float.parseFloat(coordinatesAndIp[0]), Float.parseFloat(coordinatesAndIp[1]), 30, 10, 7);
-          rect(Float.parseFloat(coordinatesAndIp[2]), Float.parseFloat(coordinatesAndIp[3]), 30, 10, 7);
-          ellipse(Float.parseFloat(coordinatesAndIp[4]), Float.parseFloat(coordinatesAndIp[5]), 10, 10);
+          rect(Float.parseFloat(coordinatesAndIp[0]), Float.parseFloat(coordinatesAndIp[1]), 100, 20, 7);
+          rect(Float.parseFloat(coordinatesAndIp[2]), Float.parseFloat(coordinatesAndIp[3]), 100, 20, 7);
+          ellipse(Float.parseFloat(coordinatesAndIp[4]), Float.parseFloat(coordinatesAndIp[5]), 20, 20);
         }
-        else if(coordinatesAndIp.length == 1 && coordinatesAndIp[0].equals("END")){
+      }
+      for(int i = 0; i < playerData.length; ++i){
+        String[] findEnd = split(playerData[i], ' ');  
+        if(findEnd.length == 1 && findEnd[0].equals("END")){
           playScreen = false;
           playBtn.setVisible(true);
         }
-      }
+      } 
     }
     else{
       textAlign(CENTER);
