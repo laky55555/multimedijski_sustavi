@@ -40,15 +40,18 @@ void draw(){
   
   if(playScreen){
     background(255, 153, 255);  
-    if(frameCount % 5 == 0)
-      c.write(mouseX + '\n');
+    if(frameCount % 5 == 0){
+      String data = Integer.toString(mouseX) + "\n";
+      println(data);
+      c.write(data);
+    }
     if(c.available() > 0){
       input = c.readString();
       
       String[] playerData = split(input, '\n');
-      println(playerData[playerData.length-1]);
-      if(!playerData.equals("")){
-        String[] coordinatesAndIp = split(playerData[playerData.length-1], '\n');
+      println(playerData[0]);
+      if(!playerData[0].equals("")){
+        String[] coordinatesAndIp = split(playerData[0], ' ');
         rect(Float.parseFloat(coordinatesAndIp[0]), Float.parseFloat(coordinatesAndIp[1]), 30, 10, 7);
         rect(Float.parseFloat(coordinatesAndIp[2]), Float.parseFloat(coordinatesAndIp[3]), 30, 10, 7);
         ellipse(Float.parseFloat(coordinatesAndIp[4]), Float.parseFloat(coordinatesAndIp[5]), 10, 10);
