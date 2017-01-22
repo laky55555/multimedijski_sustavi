@@ -16,7 +16,6 @@ String input;
 PFont font;
 
 void setup(){
-  frameRate(40);
   frameRate(20);
   size(800, 800);
   controlP5 = new ControlP5(this);
@@ -99,5 +98,5 @@ void playButtonClick(){
   playBtn.setVisible(false);
   playBtn.hide();
   playScreen = true;
-  c.write("play");
+  c.write("play" + '\n');
 }
