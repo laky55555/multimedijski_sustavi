@@ -1,0 +1,14 @@
+Izradili Mirjana Jukić-Bračulj i Ivan Laković
+
+Pokretanje igre:
+
+1) Pokrene se datoteka tennis_server.pde
+2) Pronađe se IP adresa na računala na kojem je pokrenut tennis_server.pde, nadalje server
+3) IP adresa servera se unese u datoteku tennis_client.pde u 5 liniju koda pod string IPServer
+4) Pokreću se klijenti i nakon što 2 klijenta kliknu na button igra kreće
+
+
+Napomene:
+Server koristi IP adrese klijenata za komunikaciju, stoga je za igranje potrebno pokrenuti klijenta s bar 2 različite IP adrese.
+Broj frameova po sekundi treba bolje podesiti za bolji igrački dojam.
+Slučajevi kad klijent krene igrati i odustane nisu obuhvaćeni, smatra se da će klijenti završiti igrati.

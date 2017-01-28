@@ -2,6 +2,8 @@ import controlP5.*;
 import processing.net.*;
 import java.net.InetAddress;
 
+String IPServer = "192.168.5.20";
+
 ControlP5 controlP5;
 Button playBtn, newGameBtn;
 
@@ -84,7 +86,7 @@ void controlEvent(ControlEvent theEvent){
 
 void playButtonClick(){
   println("stvaram novog klijenta");
-  c = new Client(this, "192.168.137.11", 12345);
+  c = new Client(this, IPServer, 12345);
   InetAddress inet;
   try {
       inet = InetAddress.getLocalHost();
